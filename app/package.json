@@ -1,0 +1,39 @@
+{
+  "name": "ccasistencia",
+  "version": "0.0.1",
+  "description": "CC Asistencia",
+  "productName": "Asistencia",
+  "author": "mpaz2020 <medpazord2010@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.15.10",
+    "axios": "^1.2.1",
+    "echarts": "^5.4.1",
+    "pinia": "^2.0.28",
+    "quasar": "^2.11.5",
+    "vue": "^3.2.45",
+    "vue-echarts": "^6.3.3",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^1.2.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-vue": "^9.8.0",
+    "postcss": "^8.4.20",
+    "prettier": "^2.8.1"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

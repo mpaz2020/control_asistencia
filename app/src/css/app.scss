@@ -1,0 +1,172 @@
+@import 'montserrat_font_face';
+
+
+.bg-color1{
+  background: $color1;
+}
+.text-color1{
+  color: $color1;
+}
+
+.bg-color2{
+  background: $color2;
+}
+.text-color2{
+  color: $color2;
+}
+
+.bg-color3{
+  background: $color3;
+}
+.text-color3{
+  color: $color3;
+}
+
+.bg-color4{
+  background: $color4;
+}
+.text-color4{
+  color: $color4;
+}
+.bg-color5{
+  background: $color5;
+}
+.text-color5{
+  color: $color5;
+}
+
+.bg-color6{
+  background: $color6;
+}
+.text-color6{
+  color: $color6;
+}
+
+.bg-color7{
+  background: $color7;
+}
+.text-color7{
+  color: $color7;
+}
+.inactive-link {
+  color: #767b8b;
+}
+
+.active-link {
+  background: rgb(30, 123, 130);
+}
+.input-bg {
+  background: #a9dcdd;
+}
+
+.my-card {
+  width: 100%;
+}
+
+.text-turquesa {
+  color: #217e86;
+}
+.bg-turquesa {
+  background: #217e86;
+}
+.bg-page {
+  background: rgb(197, 221, 221);
+  background: linear-gradient(
+    180deg,
+    rgba(197, 221, 221, 1) 0%,
+    rgba(197, 221, 221, 1) 65%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.btn-glossy {
+  position: relative;
+  background: rgb(56, 166, 177);
+  background-image: linear-gradient(
+    to right,
+    rgba(56, 166, 177, 1) 0%,
+    rgba(23, 125, 135, 1) 50%,
+    rgba(23, 125, 135, 1) 100%
+  );
+}
+
+.btn-glossy ::after {
+  content: '';
+  display: block;
+  height: 0.8rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 1.5rem);
+  background: #fff;
+  border-radius: 20%;
+
+  filter: blur(1px);
+  opacity: 0.1;
+  background-image: linear-gradient(
+    -270deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 20%,
+    #ffffff 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.card-rounded-borders {
+  border-radius: 20px;
+}
+
+.card-station {
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+
+  &.white-to-green {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 50%),
+      linear-gradient(180deg, rgba(196, 219, 142, 1) 0%, rgba(156, 192, 66, 1) 100%);
+    .border {
+      position: absolute;
+      height: 100%;
+      left: 50%;
+      width: 50%;
+      border-width: 0 10px;
+      border-style: solid;
+      border-color: #9cc043;
+      border-radius: 0 10px 10px 0 !important;
+    }
+  }
+  &.green-to-white {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 50%),
+      linear-gradient(180deg, rgba(196, 219, 142, 1) 0%, rgba(156, 192, 66, 1) 100%);
+    .border {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      border-width: 0 10px;
+      border-style: solid;
+      border-color: #9cc043;
+      border-radius: 10px 0 0 10px !important;
+    }
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  min-height: calc(100vh - 110px);
+  .screen--xs &,
+  .screen--sm & {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr, 4);
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background-color: $primary;
+  }
+}
