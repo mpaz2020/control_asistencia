@@ -1,5 +1,5 @@
-# Backend  - CHIRI en la web
+# Control de asistencia
 
 ## Setup
 
-- start the server with `yarn start`
+- start the server with `yarn dev`
