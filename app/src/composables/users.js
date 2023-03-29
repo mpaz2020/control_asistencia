@@ -1,5 +1,5 @@
 import { useQuasar } from 'quasar'
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { api } from 'src/boot/axios'
 import { useRouter } from 'vue-router'
 import useIndex from 'src/composables'
@@ -21,9 +21,7 @@ export default function () {
     const graphqlQuery = {
       operationName: 'tipousuario',
       query: `query tipousuario {
-        tipousuario(
-          limit: 100          
-        ) {
+        tipousuario {
           id
           nombre
           descripcion          
@@ -41,9 +39,7 @@ export default function () {
     const graphqlQuery = {
       operationName: 'departamento',
       query: `query departamento {
-        departamento(
-          limit: 100          
-        ) {
+        departamento {
           id
           nombre
           descripcion          
@@ -61,10 +57,7 @@ export default function () {
     const graphqlQuery = {
       operationName: 'usuarios',
       query: `query usuarios {
-        usuarios(
-          limit: 100
-          orderBy: {field: id, direction: ASC}
-        ) {
+        usuarios {
           id
           nombre
           apellidos

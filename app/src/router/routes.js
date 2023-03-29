@@ -13,6 +13,15 @@ const routes = [
         },
       },
       {
+        path: '/asistencias',
+        name: 'Asistencias',
+        component: () => import('pages/AsistenciasPage.vue'),
+        meta: {
+          requiresAuth: true,
+          title: 'Asistencias',
+        },
+      },
+      {
         path: '/reportes',
         name: 'Reportes',
         component: () => import('pages/ReportesPage.vue'),

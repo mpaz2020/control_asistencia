@@ -9,7 +9,7 @@
           <q-card-section>
             <q-form @submit.prevent="loginUser" class="q-gutter-md bg-white q-pa-md q-mt-md">
               <q-input
-                v-model="form.username"
+                v-model="form.usuario"
                 dense
                 placeholder="Usuario"
                 autofocus
@@ -23,7 +23,7 @@
                 </template>
               </q-input>
               <q-input
-                v-model="form.password"
+                v-model="form.claveIngreso"
                 dense
                 type="password"
                 placeholder="Contraseña"
@@ -44,7 +44,7 @@
                   color="color2"
                   no-caps
                   class="q-px-xl"
-                  :disable="!form.username || !form.password"
+                  :disable="!form.usuario || !form.claveIngreso"
                 />
               </div>
             </q-form>
@@ -65,24 +65,24 @@ const router = useRouter()
 
 const { login } = useAuthStore()
 
-const form = reactive({ username: null, password: null, remember: true })
+const form = reactive({ usuario: null, claveIngreso: null })
 
 const loginUser = async () => {
   Loading.show()
-
   try {
     const r = await login(form)
     if (r === true) {
       Loading.hide()
-      router.replace({ path: '/termometria' })
+      router.replace({ path: '/' })
     } else throw r
   } catch (e) {
-    Loading.hide()
     Notify.create({
       type: 'negative',
       message: 'Error de inicio de sesión ',
       caption: e.message,
     })
+  } finally {
+    Loading.hide()
   }
 }
 </script>

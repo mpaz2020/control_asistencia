@@ -6,7 +6,7 @@
           <div class="q-py-md" v-if="form.banner.length">
             <span class="text-h6"><strong>Nombres: </strong>{{ form.name }}</span>
             <q-banner
-              :class="`${form.banner.includes('Salida') ? 'bg-color7' : 'bg-color4'} text-white`"
+              :class="`${form.banner.includes('Ingreso') ? 'bg-color4' : 'bg-color7'} text-white`"
             >
               {{ form.banner }}</q-banner
             >
@@ -49,12 +49,12 @@
               </div>
               <div class="row justify-center">
                 <q-btn
-                  label="Iniciar Sesión"
+                  :label="user ? 'Home' : 'Iniciar Sesión'"
                   flat
                   color="color2"
                   no-caps
                   no-wrap
-                  @click="$router.push('/login')"
+                  @click="user ? $router.replace('/') : $router.push('/login')"
                 />
               </div>
             </q-form>
@@ -66,37 +66,32 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { reactive, computed } from 'vue'
 import { Notify, Loading } from 'quasar'
+import { api } from 'src/boot/axios'
 import { useAuthStore } from 'stores/auth'
-
-const router = useRouter()
-
-const { login } = useAuthStore()
+const authStore = useAuthStore()
+const user = computed(() => authStore.user)
 
 const form = reactive({ id: null, name: null, banner: '' })
 
 async function marcarAsistencia() {
   Loading.show()
-
   try {
-    const r = await login(form)
-    if (r === true) {
-      Loading.hide()
-    } else throw r
+    const { data } = await api.get('api/usuarios', { params: { claveAsistencia: form.id } })
+    if (data) {
+      Object.assign(form, data)
+    }
   } catch (e) {
-    Loading.hide()
     Notify.create({
       type: 'negative',
       message: 'Error ',
       caption: e.message,
     })
+  } finally {
+    form.id = null
+    Loading.hide()
   }
-
-  form.name = 'Medardo Paz'
-  form.banner = 'Ingreso registrado ' + new Date().toLocaleTimeString()
-  // form.banner = 'Salida registrada ' + new Date().toLocaleTimeString()
 }
 </script>
 

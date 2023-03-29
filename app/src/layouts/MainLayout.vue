@@ -76,7 +76,6 @@
             icon="mdi-folder"
             active-class="bg-transparent text-white text-weight-bold"
             class="link-item"
-            :class="$route.path === '/reportes' ? 'active-link' : ''"
           >
             <q-list dense>
               <q-item
@@ -153,7 +152,6 @@
             icon="mdi-folder"
             active-class="bg-transparent text-white text-weight-bold"
             class="link-item"
-            :class="$route.path === '/reportes' ? 'active-link' : ''"
           >
             <q-list dense>
               <q-item
@@ -161,7 +159,7 @@
                 :active="$route.path === '/asistencia'"
                 :inset-level="0.5"
                 v-ripple
-                to="/asistencia"
+                to="/asistencias"
                 no-caps
                 dense
                 class="rounded-right text-weight-regular"
@@ -169,11 +167,11 @@
               >
                 <q-item-section avatar>
                   <q-icon
-                    :name="$route.path === '/asistencia' ? 'mdi-circle' : 'mdi-circle-outline'"
+                    :name="$route.path === '/asistencias' ? 'mdi-circle' : 'mdi-circle-outline'"
                     size="xs"
                   />
                 </q-item-section>
-                <q-item-section> Asistencia </q-item-section>
+                <q-item-section> Asistencias </q-item-section>
               </q-item>
               <q-item
                 clickable
@@ -205,7 +203,7 @@
               <q-img src="/images/robot.jpg" />
             </q-avatar>
             <div class="">
-              <div class="text-weight-bold">admin</div>
+              <div class="text-weight-bold">{{ userLabel }}</div>
               <q-badge color="color4" text-color="black" rounded class="q-mr-sm" />online
             </div>
           </div>
@@ -223,17 +221,15 @@ import { computed, ref } from 'vue'
 import { Dialog } from 'quasar'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from 'stores/auth'
-import useIndex from '../composables'
 
-const { isMobile } = useIndex()
 const leftDrawerOpen = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
-const userLabel = computed(() => authStore.user?.name)
+const userLabel = computed(() => authStore.user?.nombre + ' ' + authStore.user?.apellidos)
 
 const logoutUser = () => {
   Dialog.create({
-    title: 'CHIRI',
+    title: 'CC ADMIN',
     message: 'Desea cerrar la sesión?',
     cancel: {
       label: 'No',
@@ -245,7 +241,7 @@ const logoutUser = () => {
     },
   }).onOk(async () => {
     await authStore.logout()
-    router.replace({ path: '/login' })
+    router.replace({ path: '/asistencia' })
   })
 }
 </script>

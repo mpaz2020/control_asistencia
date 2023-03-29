@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('auth', {
     },
   },
   actions: {
-    async getUser() {
+    async me() {
       try {
         const { data } = await api.get('/api/me')
         this.user = data
@@ -32,30 +32,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async login(credentials) {
       try {
-        const graphqlQuery = {
-          operationName: 'login',
-          query: `query login($username:String){
-            users(limit:1,where:{
-              username:{
-                eq:$username
-              },
-            })
-            {
-              id
-              name
-              username
-              role {
-                id
-                name
-              }
-              password
-              deletedAt
-            }
-          }`,
-          variables: credentials,
-        }
-
-        const { data } = await api.post('/api/login', graphqlQuery)
+        const { data } = await api.post('/api/login', credentials)
         const { user, token } = data
         this.user = user
         this.token = { token, remember: credentials.remember }

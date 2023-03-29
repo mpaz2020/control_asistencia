@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="bg-color3">
     <div class="row items-center q-gutter-md">
       <span>Tipo de Usuarios</span>
       <q-btn

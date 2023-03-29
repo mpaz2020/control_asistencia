@@ -29,6 +29,7 @@
         <q-td :props="props">
           <q-btn
             dense
+            size="sm"
             no-caps
             :color="props.value ? 'color4' : 'color3'"
             :text-color="props.value ? 'white' : 'black'"
@@ -67,7 +68,7 @@
               dense
               @click="onDelete(props.row)"
             />
-            <q-icon v-else color="positive" name="la la-user-lock" size="xs" />
+            <q-icon v-else color="black" name="la la-user-lock" size="sm" />
           </div>
         </q-td>
       </template>

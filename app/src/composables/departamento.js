@@ -17,9 +17,7 @@ export default function () {
     const graphqlQuery = {
       operationName: 'departamento',
       query: `query departamento {
-        departamento(
-          limit: 100          
-        ) {
+        departamento {
           id
           nombre
           descripcion          

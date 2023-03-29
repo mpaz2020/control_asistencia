@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="bg-color3">
     <div class="row text-h6 q-pb-md text-center">Usuarios</div>
     <UserForm />
   </q-page>
