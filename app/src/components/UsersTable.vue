@@ -43,7 +43,7 @@
         <q-td :props="props">
           <q-img
             v-if="props.value || props.value?.name"
-            :src="`http://localhost:3000/storage/images/${props.value?.name || props.value}`"
+            :src="`/images/${props.value?.name || props.value}`"
             width="30px"
           />
         </q-td>

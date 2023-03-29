@@ -17,14 +17,15 @@
 
           <q-space />
         </q-toolbar-title>
-
+        <q-avatar>
+          <q-img :src="`/images/${user.foto}`" />
+        </q-avatar>
         <q-btn-dropdown
           no-caps
           stretch
           flat
           align="right"
           :label="userLabel"
-          icon="mdi-account"
           color="white"
           dropdown-icon="null"
         >
@@ -200,7 +201,7 @@
         <div class="absolute-center bg-transparent">
           <div class="row justify-around items-center q-gutter-sm">
             <q-avatar>
-              <q-img src="/images/robot.jpg" />
+              <q-img v-if="user.foto" :src="`/images/${user.foto}`" />
             </q-avatar>
             <div class="">
               <div class="text-weight-bold">{{ userLabel }}</div>
@@ -226,6 +227,7 @@ const leftDrawerOpen = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 const userLabel = computed(() => authStore.user?.nombre + ' ' + authStore.user?.apellidos)
+const user = computed(() => authStore.user)
 
 const logoutUser = () => {
   Dialog.create({
