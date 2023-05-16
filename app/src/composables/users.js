@@ -266,9 +266,17 @@ export default function () {
       $q.notify({ message: 'Error al actualizar usuario', type: 'negative' })
     })
   }
+
+  async function exportarExcel() {
+    let res = await api.get('/api/usuarios/export/xlsx')
+    console.log(res)
+  }
+  async function exportarPdf() {
+    let res = await api.get('/api/usuarios/export/pdf')
+    console.log(res)
+  }
+
   return {
-    user,
-    editMode,
     onSubmit,
     onReset,
     onEdit,
@@ -277,9 +285,13 @@ export default function () {
     getUsers,
     getAreas,
     changeStatus,
+    exportarExcel,
+    exportarPdf,
     users,
     roles,
     areas,
     filter,
+    user,
+    editMode,
   }
 }

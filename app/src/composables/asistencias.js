@@ -3,7 +3,7 @@ import { api } from 'src/boot/axios'
 
 import { date } from 'quasar'
 import { FORMATO_FECHA } from '../utils'
-const { formatDate, extractDate } = date
+const { formatDate, extractDate, endOfDate } = date
 
 const user = ref(null)
 const users = ref([])
@@ -13,7 +13,7 @@ const loading = ref(false)
 
 const dateSelection = ref({
   from: formatDate(new Date(), `${FORMATO_FECHA}`),
-  to: formatDate(new Date(), `${FORMATO_FECHA}`),
+  to: formatDate(endOfDate(new Date(), 'month'), `${FORMATO_FECHA}`),
 })
 
 export default function () {

@@ -7,14 +7,14 @@
             :model-value="modelValue"
             flat
             minimal
-            mask="DD/MM/YYYY"
+            :mask="FORMATO_FECHA"
             :options="optionsFn"
-            @update:model-value="value => $emit('update:model-value', value)"
+            @update:model-value="handleUpdateModelValue"
           />
         </q-popup-proxy>
       </q-icon>
     </template>
-    <template v-slot:append>
+    <!-- <template v-slot:append>
       <q-icon name="access_time" class="cursor-pointer">
         <q-popup-proxy transition-show="scale" transition-hide="scale">
           <q-time
@@ -27,7 +27,7 @@
           </q-time>
         </q-popup-proxy>
       </q-icon>
-    </template>
+    </template> -->
   </q-input>
 </template>
 
@@ -37,6 +37,8 @@ import { date } from 'quasar'
 import { FORMATO_FECHA } from '../utils'
 
 const { formatDate, extractDate } = date
+
+const emit = defineEmits(['update-model-value'])
 
 const props = defineProps({
   label: {
@@ -63,8 +65,6 @@ const optionsFn = date => {
 }
 
 const lblFecha = computed(() => {
-  if (Object(props.modelValue) === props.modelValue)
-    return `${props.modelValue.from} al ${props.modelValue.to}`
   return props.modelValue
 })
 
@@ -77,20 +77,20 @@ function optionsFnTime(hr, min, sec) {
 }
 
 function optionsFnMaxDate(date, nextDate) {
-  return date <= formatDate(extractDate(nextDate, `${FORMATO_FECHA} HH:mm`), 'YYYY/MM/DD')
+  return date <= formatDate(extractDate(nextDate, `${FORMATO_FECHA}`), 'YYYY/MM/DD')
 }
 
 function optionsFnMinDate(date, previousDate) {
   return (
-    date >= formatDate(extractDate(previousDate, `${FORMATO_FECHA} HH:mm`), 'YYYY/MM/DD')
+    date >= formatDate(extractDate(previousDate, `${FORMATO_FECHA}`), 'YYYY/MM/DD')
     // &&
     // date <= formatDate(new Date(), 'YYYY/MM/DD')
   )
 }
 
 function optionsFnMaxTime(hr, min, sec, nextDate, modelValue) {
-  let fecha2 = new Date(extractDate(nextDate, `${FORMATO_FECHA} HH:mm`))
-  let fecha1 = new Date(extractDate(modelValue, `${FORMATO_FECHA} HH:mm`))
+  let fecha2 = new Date(extractDate(nextDate, `${FORMATO_FECHA} `))
+  let fecha1 = new Date(extractDate(modelValue, `${FORMATO_FECHA}`))
 
   fecha1.setHours(hr)
   fecha1.setMinutes(min)
@@ -101,8 +101,8 @@ function optionsFnMaxTime(hr, min, sec, nextDate, modelValue) {
 }
 
 function optionsFnMinTime(hr, min, sec, previousDate, modelValue) {
-  let fecha2 = new Date(extractDate(modelValue, `${FORMATO_FECHA} HH:mm`))
-  let fecha1 = new Date(extractDate(previousDate, `${FORMATO_FECHA} HH:mm`))
+  let fecha2 = new Date(extractDate(modelValue, `${FORMATO_FECHA}`))
+  let fecha1 = new Date(extractDate(previousDate, `${FORMATO_FECHA}`))
 
   fecha2.setHours(hr)
   fecha2.setMinutes(min)
@@ -110,5 +110,9 @@ function optionsFnMinTime(hr, min, sec, previousDate, modelValue) {
 
   if (fecha2 >= fecha1) return true
   return false
+}
+
+function handleUpdateModelValue(value) {
+  emit('update:model-value', value)
 }
 </script>

@@ -2,8 +2,8 @@
   <div>
     <div class="row justify-between items-center">
       <div class="q-gutter-sm">
-        <q-btn color="white" text-color="black" label="Excel" outline />
-        <q-btn color="white" text-color="black" label="PDF" outline />
+        <q-btn color="white" text-color="black" label="Excel" outline @click="exportarExcel" />
+        <q-btn color="white" text-color="black" label="PDF" outline @click="exportarPdf" />
       </div>
       <div class="row items-center q-gutter-md">
         <span>Buscar: </span>
@@ -139,7 +139,8 @@ const columns = [
   },
 ]
 
-const { users, filter, getUsers, onEdit, onDelete, changeStatus } = useUsers()
+const { users, filter, getUsers, onEdit, onDelete, changeStatus, exportarExcel, exportarPdf } =
+  useUsers()
 
 onMounted(getUsers)
 </script>

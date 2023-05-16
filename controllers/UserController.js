@@ -58,7 +58,19 @@ export async function getAll(req) {
 
 export async function uploadImage(req) {
   const data = await req.file()
-  const ruta = process.env.PATH_UPLOAD_IMAGE || '/public/storage/images/'
+  const ruta = process.env.PATH_UPLOAD_IMAGE || '/public/images/'
   await pump(data.file, fs.createWriteStream(appDir + ruta + data.filename))
   return { upload: 'completed' }
+}
+
+export async function exportToExcel(req) {
+  return {
+    message: 'Exportando a excel...',
+  }
+}
+
+export async function exportToPdf(req) {
+  const res = await this.pdf.create()
+  console.log(res.outputPath)
+  return res.outputPath
 }

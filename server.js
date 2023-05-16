@@ -28,7 +28,7 @@ const main = async function () {
       gracefulServer.setReady()
       try {
         await app.db.pool.getConnection()
-        console.log(app.printRoutes())
+        // console.log(app.printRoutes())
         app.log.info('Conected to DB!')
       } catch (err) {
         app.log.error({
