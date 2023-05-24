@@ -2,7 +2,6 @@
 /.nyc_output
 /node_modules
 /yarn-error.log
-!/public/
-/public/**
-!/public/images/
+/public/*
+!/public/images
 pg_data
