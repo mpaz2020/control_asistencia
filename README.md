@@ -7,7 +7,12 @@
 - database: `control_asistencial`
 - servidor: `MariaDB`
 
-Pasos: abril el proyecto desde una consola cmd
+Clonar el proyecto desde github:
+
+1. Crear una carpeta vacia con el nombre `control_asistencia`
+2. Ejecutar el comando `npx degit https://github.com/mpaz2020/control_asistencia.git`
+
+Ejecutar el proyecto desde una consola de windows:
 
 1. Instalar dependencias ejecutar `yarn install`
 2. cd app y ejecutar `yarn install`
